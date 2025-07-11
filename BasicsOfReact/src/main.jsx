@@ -7,7 +7,6 @@ import ColorChanger from './components/ColorChanger.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    {/* <App /> */}
-    <ColorChanger/>
+    <App />
   </StrictMode>,
 )

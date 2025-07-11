@@ -34,10 +34,10 @@ function App() {
       <br />
       <button onClick={reduceVlue}>Remove Value</button>
 
-      {/* <Card username="Riju"  btnText="click me"/> 
-      <Card username="Rupsa" />  */}
+      <Card username="Riju"  btnText="click me"/> 
+      <Card username="Rupsa" /> 
+      <ColorChanger/>
       <footer>Footer : {counter} </footer>
-      <ColorChanger />
       </div>
     </>
   )
