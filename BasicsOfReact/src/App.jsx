@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import Card from './components/Card';
+import ColorChanger from './components/ColorChanger';
 
 const obj = {
   name: "parthib",
@@ -33,9 +34,10 @@ function App() {
       <br />
       <button onClick={reduceVlue}>Remove Value</button>
 
-      <Card username="Riju"  btnText="click me"/> 
-      <Card username="Rupsa" /> 
+      {/* <Card username="Riju"  btnText="click me"/> 
+      <Card username="Rupsa" />  */}
       <footer>Footer : {counter} </footer>
+      <ColorChanger />
       </div>
     </>
   )
