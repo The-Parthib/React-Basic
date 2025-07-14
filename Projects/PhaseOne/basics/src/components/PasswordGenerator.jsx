@@ -37,7 +37,7 @@ function PasswordGenerator() {
 
   return (
     <>
-      
+      <h1 className="text-yellow-400 text-center text-3xl font-extrabold mt-12">PassWord MAte</h1>
       <div className="w-full max-w-md mx-auto shadow-md rounded-lg px-4 py-3 my-8 bg-gray-800 text-orange-500">
         <h1 className="text-white text-center my-3">Password generator</h1>
         <div className="flex shadow rounded-lg overflow-hidden mb-4">
@@ -60,7 +60,7 @@ function PasswordGenerator() {
             <input
               type="range"
               min={6}
-              max={100}
+              max={20}
               value={length}
               className="cursor-grab"
               onChange={(e) => { setLength(e.target.value) }}
