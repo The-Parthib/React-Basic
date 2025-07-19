@@ -10,6 +10,7 @@ import Contact from './components/Router/Contact/Contact'
 import User from './components/Router/User/User'
 import Github, { githubDatainfo } from './components/Router/Github/Github'
 
+/*
 const router = createBrowserRouter(
   (
     createRoutesFromElements(
@@ -18,15 +19,17 @@ const router = createBrowserRouter(
         <Route path='about' element={<About />}/>
         <Route path='contact-us' element={<Contact />} />
         <Route path='user/:id' element={<User />} />
-        {/* used loader to optimize fetching */}
+
+        {/* used loader to optimize fetching }
         <Route loader={githubDatainfo} path='github' element={<Github/>}/> 
 
       </Route>
     )
   )
 )
-
 /*
+
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -45,17 +48,17 @@ const router = createBrowserRouter([
 ])
   */
 
+/*
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <RouterProvider router={router} />
   </StrictMode>,
 )
+*/
 
 
-/*
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />
   </StrictMode>,
-
-*/
+)

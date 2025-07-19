@@ -4,13 +4,11 @@
 
 import RouterProject from "./components/RouterProject";
 
-
 const App = () => {
   return (
     <>
       {/* <PasswordGenerator /> */}
       {/* <CurrencyConvereter /> */}
-      <RouterProject/>
     </>
   );
 };
