@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 
 function Footer() {
   return (
@@ -21,14 +21,14 @@ function Footer() {
               </h2>
               <ul className="text-gray-500 font-medium">
                 <li className="mb-4">
-                  <Link to="/" className="hover:underline">
+                  <NavLink to="/" className={({isActive})=>`${isActive ? "text-orange-700":"text-gray-700"}`}>
                     Home
-                  </Link>
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/about" className="hover:underline">
+                  <NavLink to="/about" className={({isActive})=>`${isActive ? "text-orange-700":"text-gray-700"}`}>
                     About
-                  </Link>
+                  </NavLink>
                 </li>
               </ul>
             </div>
@@ -38,14 +38,14 @@ function Footer() {
               </h2>
               <ul className="text-gray-500 font-medium">
                 <li className="mb-4">
-                  <a
-                    href="https://github.com/hiteshchoudhary"
+                  <Link
+                    to="https://github.com/The-Parthib"
                     className="hover:underline"
                     target="_blank"
                     rel="noreferrer"
                   >
                     Github
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <Link to="/" className="hover:underline">
@@ -76,10 +76,8 @@ function Footer() {
         <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-sm text-gray-500 sm:text-center">
-            © 2023
-            <a href="https://hiteshchoudhary.com/" className="hover:underline">
-              hiteshchoudhary
-            </a>
+            © 2025
+            <span>parthib</span>
             . All Rights Reserved.
           </span>
           <div className="flex mt-4 space-x-5 sm:justify-center sm:mt-0">
