@@ -1,8 +1,9 @@
 
-import './App.css'
 // import Login from './components/Login'
 // import Profile from './components/Profile'
 // import UserContextProvider from './context/userContextProvider'
+
+import ThemeRoot from "./components/ThemeToggler/ThemeRoot"
 
 function App() {
 
@@ -13,8 +14,11 @@ function App() {
     //   <Profile/>
     // </UserContextProvider>
 
-    <div><h1>hello world</h1></div>
-  )
+    <div className="max-w-md flex flex-wrap justify-center mx-72 dark:bg-gray-900">
+      <h1 className="bg-pink-700 text-white font-extrabold rounded-4xl p-4 text-center">hello world</h1>
+      <ThemeRoot />
+    </div>
+    )
 }
 
 export default App
