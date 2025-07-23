@@ -22,16 +22,16 @@ function App() {
     //   <ThemeRoot />
     // </div>
 
-    <>
-    <CartContextProvider>
-      <Shopping/>
-    </CartContextProvider>
-    </>
-
     // <>
-    // {/* <TodoApp/> */}
-    
+    // <CartContextProvider>
+    //   <Shopping/>
+    // </CartContextProvider>
     // </>
+
+    <>
+    <TodoApp/>
+    
+    </>
     )
 }
 
