@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useFirebase } from "../contexts/FireBase";
+import { useState } from "react";
+import { useFirebase } from "../contexts/FireBaseContext";
 
 const FireBaseApp = () => {
   const fbase = useFirebase(); // context
@@ -15,20 +15,25 @@ const FireBaseApp = () => {
     fbase.signUpEmail(email, pass);
   };
   const handleUpload = () => {
-    fbase.uploadData("users/" + "riju", { email, pass });
+    fbase.uploadData("users/" + "kaddu", { name:"kaddu", age:21, gender:"Female" });
+    console.log("data stored")
   };
 
   const handleWrite = () => {
     fbase.writeData(city, pincode, lat, long);
     setCity("");
-    setLat("")
-    setLong("")
-    setPincode("")
+    setLat("");
+    setLong("");
+    setPincode("");
   };
 
-  const handleFetchData = () => { 
-    fbase.getDocument()
-   }
+  const handleFetchData = () => {
+    fbase.getDocument();
+  };
+
+  const handleQuery = () => {
+    fbase.getDocumentByQuery();
+  };
 
   return (
     <div>
@@ -93,6 +98,10 @@ const FireBaseApp = () => {
 
       <div>
         <button onClick={handleFetchData}>fetch data</button>
+      </div>
+
+      <div>
+        <button onClick={handleQuery}>get by query</button>
       </div>
     </div>
   );

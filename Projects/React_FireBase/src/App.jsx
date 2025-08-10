@@ -24,7 +24,7 @@ function App() {
 
   return (
     <>
-      <h1>React + fireBase</h1>
+      <h3>React + fireBase</h3>
       {/* <button onClick={signupUser}>Sign Up</button> */}
       <SignUp/>
       <SignIn />
