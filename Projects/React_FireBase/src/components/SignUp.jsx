@@ -1,33 +1,77 @@
-import React, { useState } from 'react'
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
-import { app } from '../firebase';
+import React, { useState, useEffect } from "react";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  onAuthStateChanged,
+  signOut,
+} from "firebase/auth";
+import { auth } from "../firebase";
 
-const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+
 
 const SignUp = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [user, setUser] = useState(null);
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+  const signUpWithGoogle = () => {
+    signInWithPopup(auth, provider);
+  };
 
-    const createUser = ()=>{
-        createUserWithEmailAndPassword(auth,email,password).then(()=>alert('Succes..!!'))
-    }
-  return (
-    <div>
+  const createUser = () => {
+    createUserWithEmailAndPassword(auth, email, password).then(() =>
+      alert("Succes..!!")
+    );
+  };
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // sigend in
+        console.log("Hello ", user);
+        setUser(user);
+      } else {
+        alert("Logged Out");
+        setUser(null);
+      }
+    });
+  }, []);
+
+  if (user === null) {
+    return (
+      <div>
         <h1>Sign Up</h1>
         <label htmlFor="email">Enter Email</label>
-        <input type="email" placeholder='example@gmail.com'
-        onChange={e=> setEmail(e.target.value)}
-        value={email}
+        <input
+          type="email"
+          placeholder="example@gmail.com"
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
         />
         <label htmlFor="pasword">Enter Password</label>
-        <input type="password" placeholder='passowrd'
-        onChange={e=>setPassword(e.target.value)}
-        value={password}
+        <input
+          type="password"
+          placeholder="passowrd"
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
         />
         <button onClick={createUser}>Sign Up</button>
-    </div>
-  )
-}
+        <br />
+        <button onClick={signUpWithGoogle}>google</button>
+      </div>
+    );
+  }
 
-export default SignUp
+  return (
+    <>
+      <h2>{user.email}</h2>
+      <button onClick={() => signOut(auth)}>Log Out</button>
+    </>
+  );
+};
+
+export default SignUp;
