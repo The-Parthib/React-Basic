@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFirebase } from "../contexts/FireBaseContext";
+import { onValue, ref } from "firebase/database";
+import { database } from "../firebase";
 
 const FireBaseApp = () => {
   const fbase = useFirebase(); // context
@@ -10,13 +12,18 @@ const FireBaseApp = () => {
   const [lat, setLat] = useState();
   const [long, setLong] = useState();
   const [pincode, setPincode] = useState();
+  const [naam, setNaam] = useState("");
 
   const handleSignIn = () => {
     fbase.signUpEmail(email, pass);
   };
   const handleUpload = () => {
-    fbase.uploadData("users/" + "kaddu", { name:"kaddu", age:21, gender:"Female" });
-    console.log("data stored")
+    fbase.uploadData("users/" + "puchku", {
+      name: "kaddu",
+      age: 21,
+      gender: "Female",
+    });
+    console.log("data stored");
   };
 
   const handleWrite = () => {
@@ -35,9 +42,24 @@ const FireBaseApp = () => {
     fbase.getDocumentByQuery();
   };
 
+  const handleRealtimeData = () => {
+    fbase.realTimeData();
+  };
+
+
+  useEffect(() => {
+      onValue(ref(database, "users/kaddu"), (snanpshot) =>
+    /* console.log("realTime data:" ,snanpshot.val())*/ setNaam(
+      snanpshot.val().age
+    )
+  );
+  }, [])
+  
+
   return (
     <div>
       <h3>FireBaseApp</h3>
+      <h2>{naam}</h2>
       <label htmlFor="email">Email: </label>
       <input
         type="email"
@@ -102,6 +124,9 @@ const FireBaseApp = () => {
 
       <div>
         <button onClick={handleQuery}>get by query</button>
+      </div>
+      <div>
+        <button onClick={handleRealtimeData}>Real Time data</button>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { ref, set } from "firebase/database";
+import { ref, set, child, get } from "firebase/database";
 import { auth, database, db } from "../firebase";
 import {
   collection,
@@ -58,18 +58,28 @@ export const FirebaseProvider = ({ children }) => {
     }
   };
 
+  const realTimeData = () => {
+    get(child(ref(database), "users")).then((data) => console.log(data.val()));
+  };
 
-  const getDocumentByQuery = async() => { 
-      const ref = collection(db, "users")
-      const q = query(ref,where("isMale","==", true));
-      const snapshot = await getDocs(q);
+  const getDocumentByQuery = async () => {
+    const ref = collection(db, "users");
+    const q = query(ref, where("isMale", "==", true));
+    const snapshot = await getDocs(q);
 
-      snapshot.forEach((data)=> console.log("data : ", data.data()));
-   }
+    snapshot.forEach((data) => console.log("data : ", data.data()));
+  };
 
   return (
     <FirebaseContext.Provider
-      value={{ getDocument, writeData, signUpEmail, uploadData , getDocumentByQuery }}
+      value={{
+        getDocument,
+        writeData,
+        signUpEmail,
+        uploadData,
+        getDocumentByQuery,
+        realTimeData,
+      }}
     >
       {children}
     </FirebaseContext.Provider>
