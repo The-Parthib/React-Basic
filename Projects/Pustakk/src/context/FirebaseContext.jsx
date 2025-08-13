@@ -8,6 +8,8 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
+import { fireStore } from "../firebase";
+
 const FirebaseContext = createContext(null);
 export const useFirebase = () => useContext(FirebaseContext);
 
@@ -35,8 +37,16 @@ export const FirebaseContextProvider = ({ children }) => {
     return signInWithPopup(auth, provider);
   };
   const isLoggedIn = user ? true : false;
+
+
+  //files
+
+  const dataUpload = (title,isbn,price,file) => { 
+
+   }
+
   return (
-    <FirebaseContext.Provider value={{ createUser, LoginUser, googleAuth, isLoggedIn }}>
+    <FirebaseContext.Provider value={{ dataUpload, createUser, LoginUser, googleAuth, isLoggedIn }}>
       {children}
     </FirebaseContext.Provider>
   );
