@@ -9,6 +9,7 @@ import {
 } from "firebase/auth";
 
 import { fireStore } from "../firebase";
+import { addDoc, collection, getDocs } from "firebase/firestore";
 
 const FirebaseContext = createContext(null);
 export const useFirebase = () => useContext(FirebaseContext);
@@ -41,12 +42,23 @@ export const FirebaseContextProvider = ({ children }) => {
 
   //files
 
-  const dataUpload = (title,isbn,price,file) => { 
-
+  const dataUpload = async(title,isbn,price,file) => { 
+    await addDoc(collection(fireStore,"books"),{
+      title,
+      isbn,
+      price,
+      createdAt: new Date().toGMTString(),
+      userEmail : user.email,
+      userUid : user.uid
+    })
    }
 
+   const getBookList = async() => { 
+    return await getDocs(collection(fireStore, "books"));
+    }
+
   return (
-    <FirebaseContext.Provider value={{ dataUpload, createUser, LoginUser, googleAuth, isLoggedIn }}>
+    <FirebaseContext.Provider value={{ getBookList, dataUpload, createUser, LoginUser, googleAuth, isLoggedIn }}>
       {children}
     </FirebaseContext.Provider>
   );
