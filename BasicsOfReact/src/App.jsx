@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import Card from './components/Card';
 import ColorChanger from './components/ColorChanger';
+import LoginPage from './components/LoginPage';
 
 const obj = {
   name: "parthib",
@@ -27,17 +28,18 @@ function App() {
   return (
     <>
     <div>
-      <h1>Chai and React | counter : {counter}</h1>
+      {/* <h1>Chai and React | counter : {counter}</h1>
       <h2>Counter value : {counter}</h2>
 
       <button onClick={addValue}>Add Value</button>
       <br />
       <button onClick={reduceVlue}>Remove Value</button>
 
-      <Card username="Riju"  btnText="click me"/> 
-      <Card username="Rupsa" /> 
-      <ColorChanger/>
-      <footer>Footer : {counter} </footer>
+      {/* <Card username="Riju"  btnText="click me"/> 
+      <Card username="Rupsa" />  */}
+      {/* <ColorChanger/> */}
+      {/* <footer>Footer : {counter} </footer> */}
+      {/* <LoginPage/> */}
       </div>
     </>
   )
