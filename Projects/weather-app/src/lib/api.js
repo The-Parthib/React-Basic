@@ -9,6 +9,7 @@ export async function searchCity(city) {
         console.log("==============API called successfully==============");
         const data = await res.json();
         console.log(data);
+        return data;
     } catch (error) {
         console.error("Error fetching weather data:", error);
     }
