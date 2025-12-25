@@ -2,7 +2,7 @@
 
 export async function searchCity(city) {
     try {
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=3f7456b3c7e3168afb914b54cdfa50b8`
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=3f7456b3c7e3168afb914b54cdfa50b8`
 
         const res =  await fetch(url);
         console.log(res.ok);
@@ -12,6 +12,15 @@ export async function searchCity(city) {
         return data;
     } catch (error) {
         console.error("Error fetching weather data:", error);
+    }
+}
+
+export async function weatherIcon(iconCode) {
+    try {
+        const image = `https://openweathermap.org/img/wn/${iconCode}@2x.png`
+        return image;
+    } catch (error) {
+        console.error("Error fetching weather icon:", error);
     }
 }
 

@@ -7,17 +7,31 @@ import rainIcon from "../assets/rain.png";
 import snowIcon from "../assets/snow.png";
 import humidityIcon from "../assets/humidity.png";
 import windIcon from "../assets/wind.png";
-import { useState } from "react";
-import { searchCity } from "../lib/api.js"
+import { useState, useEffect } from "react";
+import { searchCity } from "../lib/api.js";
 
 const WeatherApp = () => {
-    const [city, setCity] = useState("Howrah");
+  const [city, setCity] = useState("Howrah");
+  const [weatherData, setWeatherData] = useState({});
 
-    const d = searchCity(city);
-    console.log(d);
+  useEffect(() => {
+    const fetchWeather = async () => {
+      const apiData = await searchCity(city);
+      if (apiData && apiData.main) {
+        setWeatherData({
+          humidity: apiData.main.humidity,
+          temperature: Math.floor(apiData.main.temp),
+          location: apiData.name,
+          wind: apiData.wind.speed,
+          icon: apiData.weather[0].icon,
+        });
+      }
+    };
+    fetchWeather();
+  }, [city]);
 
   return (
-    <div className="w-[380px] bg-gradient-to-br from-indigo-600 to-purple-700 rounded-3xl p-8 shadow-2xl">
+    <div className="w-xl bg-linear-to-br from-indigo-600 to-purple-700 rounded-3xl p-8 shadow-2xl">
       {/* Search Bar */}
       <div className="flex items-center gap-3 mb-8">
         <input
