@@ -15,13 +15,4 @@ export async function searchCity(city) {
     }
 }
 
-export async function weatherIcon(iconCode) {
-    try {
-        const image = `https://openweathermap.org/img/wn/${iconCode}@2x.png`
-        return image;
-    } catch (error) {
-        console.error("Error fetching weather icon:", error);
-    }
-}
-
 // searchCity("Howrah");
