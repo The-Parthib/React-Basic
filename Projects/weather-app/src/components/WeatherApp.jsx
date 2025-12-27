@@ -39,6 +39,7 @@ const WeatherApp = () => {
           location: apiData.name,
           wind: apiData.wind.speed,
           icon: iconCode,
+          description: apiData.weather[0].main,
         });
         // Set the icon URL
         setWbIcon(`https://openweathermap.org/img/wn/${iconCode}@2x.png`);
@@ -48,12 +49,12 @@ const WeatherApp = () => {
   }, [searchClicked]);
 
   return (
-    <div className="w-xl bg-linear-to-br from-indigo-600 to-purple-700 rounded-3xl p-8 shadow-2xl">
+    <div className="w-full max-w-md bg-white/80 backdrop-blur-lg rounded-3xl p-8 shadow-xl border border-white/20">
       {/* Search Bar */}
       <div className="flex items-center gap-3 mb-8">
         <input
           type="text"
-          placeholder="Search"
+          placeholder="Search city..."
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={(e) => {
@@ -62,57 +63,78 @@ const WeatherApp = () => {
               setSearchClicked(!searchClicked);
             }
           }}
-          className="flex-1 h-12 px-5 rounded-full bg-white/90 text-gray-700 placeholder-gray-500 outline-none text-base"
+          className="flex-1 h-12 px-5 rounded-full bg-gray-100 text-gray-700 placeholder-gray-400 outline-none text-base border border-gray-200 focus:border-sky-400 focus:ring-2 focus:ring-sky-100 transition-all"
         />
         <button
           onClick={() => {
             setCity(inputValue);
             setSearchClicked(!searchClicked);
           }}
-          className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center cursor-pointer hover:bg-white transition-colors"
+          className="w-12 h-12 rounded-full hover:bg-sky-100 flex items-center justify-center cursor-pointer hover:from-sky-600 hover:to-blue-700 transition-all shadow-lg hover:shadow-xl"
         >
-          <img src={searchIcon} alt="search" className="w-5 h-5" />
+          <img src={searchIcon} alt="search" className="w-5 h-5 invert" />
         </button>
       </div>
 
       {/* Weather Icon */}
-      <div className="flex justify-center mb-4">
+      <div className="flex justify-center mb-2">
         {wbIcon && (
-          <img src={wbIcon} alt="weather icon" className="w-32 h-32" />
+          <div className="p-4 bg-linear-to-br from-sky-100 to-blue-100 rounded-full shadow-inner">
+            <img
+              src={wbIcon}
+              alt="weather icon"
+              className="w-24 h-24 drop-shadow-lg"
+            />
+          </div>
         )}
       </div>
 
+      {/* Weather description*/}
+      <div className="text-center mb-4">
+        <span className="inline-block px-4 py-1 bg-sky-100 text-sky-700 rounded-full text-sm font-medium">
+          {weatherData.description}
+        </span>
+      </div>
+
       {/* Temperature */}
-      <div className="text-center mb-2">
-        <h1 className="text-7xl font-light text-white">
+      <div className="text-center mb-1">
+        <h1 className="text-7xl font-bold bg-linear-to-r from-sky-600 to-blue-700 bg-clip-text text-transparent">
           {weatherData.temperature}°c
         </h1>
       </div>
 
       {/* City Name */}
       <div className="text-center mb-8">
-        <h2 className="text-4xl font-normal text-white">
+        <h2 className="text-3xl font-semibold text-gray-700">
           {weatherData.location}
         </h2>
       </div>
 
       {/* Weather Details */}
-      <div className="flex justify-between px-4">
+      <div className="flex justify-between gap-4">
         {/* Humidity */}
-        <div className="flex items-center gap-3">
-          <img src={humidityIcon} alt="humidity" className="w-10 h-10" />
-          <div className="text-white">
-            <p className="text-xl font-medium">{weatherData.humidity}%</p>
-            <p className="text-sm opacity-80">Humidity</p>
+        <div className="flex-1 flex items-center gap-3 bg-blue-500 rounded-2xl p-4 border border-sky-100">
+          <div className="p-2 bg-sky-600 rounded-xl">
+            <img src={humidityIcon} alt="humidity" className="w-8 h-8" />
+          </div>
+          <div>
+            <p className="text-xl font-bold text-white">
+              {weatherData.humidity}%
+            </p>
+            <p className="text-xs text-white font-medium">Humidity</p>
           </div>
         </div>
 
         {/* Wind Speed */}
-        <div className="flex items-center gap-3">
-          <img src={windIcon} alt="wind" className="w-10 h-10" />
-          <div className="text-white">
-            <p className="text-xl font-medium">{weatherData.wind} Km/h</p>
-            <p className="text-sm opacity-80">Wind Speed</p>
+        <div className="flex-1 flex items-center gap-3 bg-blue-500 rounded-2xl p-4 border border-sky-100">
+          <div className="p-2 bg-sky-600 rounded-xl">
+            <img src={windIcon} alt="wind" className="w-8 h-8" />
+          </div>
+          <div>
+            <p className="text-xl font-bold text-white">
+              {weatherData.wind} Km/h
+            </p>
+            <p className="text-xs text-white font-medium">Wind Speed</p>
           </div>
         </div>
       </div>

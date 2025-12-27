@@ -1,15 +1,13 @@
-import WeatherApp from "./components/WeatherApp"
-
+import WeatherApp from "./components/WeatherApp";
 
 function App() {
-
   return (
     <>
-      <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-gray-800 to-gray-700">
-      <WeatherApp />
+      <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-sky-100 via-blue-50 to-indigo-100">
+        <WeatherApp />
       </div>
     </>
-    )
+  );
 }
 
-export default App
+export default App;
